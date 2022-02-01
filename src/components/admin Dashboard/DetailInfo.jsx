@@ -1,4 +1,6 @@
 import {
+  Avatar,
+  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -13,50 +15,60 @@ import {
 } from "@material-ui/core";
 import React from "react";
 
-function createData(id, date, name, shipTo, paymentMethod, amount) {
-  return { id, date, name, shipTo, paymentMethod, amount };
+function createData(id, img, date, name, departement, salery, comission,status) {
+  return { id, img, date, name, departement, salery, comission,status };
 }
 
 const rows = [
   createData(
     0,
-    "16 Mar, 2019",
+    "https://images.unsplash.com/photo-1581382575275-97901c2635b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
+    "1/31/2022",
     "Elvis Presley",
-    "Tupelo, MS",
-    "UN Processes and Mechanisms",
-    "UNCO, UNDP, UNEP, UNESCO"
+    "Department 1",
+    "6000.00",
+    "__.__",
+    "Approved",
   ),
   createData(
     1,
-    "16 Mar, 2019",
-    "Team A",
-    "London, UK",
-    "Indigenous Peoples and Development",
-    "UNCO, UNDP, UNEP, UNESCO"
+    "https://images.unsplash.com/photo-1581382575275-97901c2635b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
+    "1/31/2022",
+    "Jhon Doe",
+    "Department 1",
+    "6000.00",
+    "__.__",
+    "Approved",
   ),
   createData(
     2,
-    "16 Mar, 2019",
+    "https://images.unsplash.com/photo-1581382575275-97901c2635b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
+    "1/31/2022",
     "Tom Scholz",
-    "Boston, MA",
-    "Mapping Agency Initiatives",
-    "UNCO, UNDP, UNEP, UNESCO"
+    "Department 1",
+    "6000.00",
+    "__.__",
+    "Approved",
   ),
   createData(
     3,
-    "16 Mar, 2019",
-    "Team B",
-    "Gary, IN",
-    "Indigenous Peoples and Development",
-    "UNCO, UNDP, UNEP, UNESCO"
+    "https://images.unsplash.com/photo-1581382575275-97901c2635b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
+    "1/31/2022",
+    "Jhon Doe",
+    "Department 1",
+    "6000.00",
+    "400.00",
+    "Approved",
   ),
   createData(
     4,
+    "https://images.unsplash.com/photo-1581382575275-97901c2635b7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60",
     "15 Mar, 2019",
     "Bruce Springsteen",
-    "Long Branch, NJ",
-    "UN Processes and Mechanisms",
-    "UNCO, UNDP, UNEP, UNESCO"
+    "Department 1",
+    "6000.00",
+    "400.00",
+    "Approved",
   ),
 ];
 
@@ -68,6 +80,10 @@ container: {
     boxShadow: "0px 0px 15px -10px rgba(0, 0, 0, 0.75)",
     cursor: "pointer"
 },
+  profile: {
+    display: "flex",
+    alignItems: "center"
+  },
   title: {
     margin: theme.spacing(1),
     color: theme.palette.primary.main,
@@ -75,6 +91,10 @@ container: {
   seeMore: {
     marginTop: theme.spacing(1),
     fontSize: 14
+  },
+  status: {
+    backgroundColor: "#e5faf2",
+    color: "#3bb077"
   },
 }));
 
@@ -90,21 +110,33 @@ export default function DetailInfo() {
         <Table size="small">
           <TableHead>
             <TableRow>
-              <TableCell>Date</TableCell>
-              <TableCell>Team / Individual Name</TableCell>
-              <TableCell>Venue</TableCell>
-              <TableCell>Agenda</TableCell>
-              <TableCell>Participants</TableCell>
+              <TableCell>
+                Name
+                </TableCell>
+              <TableCell>Hired Date</TableCell>
+              <TableCell>Departement</TableCell>
+              <TableCell align="right">Salery</TableCell>
+              <TableCell align="right">Commission</TableCell>
+              <TableCell>Status</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.id}>
+                <TableCell className={classes.profile}>
+                  <Avatar 
+                    src={row.img}
+                    style={{marginRight: "10px"}}
+                  />
+                  {row.name}
+                  </TableCell>
                 <TableCell>{row.date}</TableCell>
-                <TableCell>{row.name}</TableCell>
-                <TableCell>{row.shipTo}</TableCell>
-                <TableCell>{row.paymentMethod}</TableCell>
-                <TableCell>{row.amount}</TableCell>
+                <TableCell>{row.departement}</TableCell>
+                <TableCell align="right">{row.salery}</TableCell>
+                <TableCell align="right">{row.comission}</TableCell>
+                <TableCell>
+                <Button variant="outlined" className={classes.status}>{row.status}</Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -112,7 +144,7 @@ export default function DetailInfo() {
       </CardContent>
       <CardActionArea className={classes.seeMore}>
         <Link color="primary" href="#" className={classes.link}>
-          See more orders
+          See more Employee Details
         </Link>
       </CardActionArea>
     </Card>

@@ -1,108 +1,112 @@
-import { Avatar, Button, Card, CardContent, makeStyles, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
-import React from 'react';
+import { Card, CardContent, makeStyles, Typography } from "@material-ui/core";
+import React from "react";
+import { BarChart, Bar, XAxis, Tooltip, Legend } from "recharts";
+
+const data = [
+  {
+    name: "Jan",
+    vacancies: 4000,
+    candidates: 2400,
+  },
+  {
+    name: "Feb",
+    vacancies: 3000,
+    candidates: 1398,
+  },
+  {
+    name: "Mar",
+    vacancies: 2000,
+    candidates: 9800,
+  },
+  {
+    name: "Apr",
+    vacancies: 7780,
+    candidates: 6908,
+  },
+  {
+    name: "May",
+    vacancies: 1890,
+    candidates: 4800,
+  },
+  {
+    name: "Jun",
+    vacancies: 2390,
+    candidates: 3800,
+  },
+  {
+    name: "Jul",
+    vacancies: 1490,
+    candidates: 2300,
+  },
+  {
+    name: "Aug",
+    vacancies: 3490,
+    candidates: 4300,
+  },
+  {
+    name: "Sept",
+    vacancies: 3490,
+    candidates: 4300,
+  },
+  {
+    name: "Nov",
+    vacancies: 5490,
+    candidates: 7300,
+  },
+  {
+    name: "Dec",
+    vacancies: 8490,
+    candidates: 9900,
+  },
+];
 
 const useStyles = makeStyles((theme) => ({
   container: {
     flex: 2,
-    margin: "20px",
+    marginLeft: "20px",
     padding: "20px",
-    "-webkit-box-shadow": "0px 0px 15px -10px rgba(0, 0, 0, 0.75)",
+    width: "600px",
+    height: "400px",
+    "-webkit-box-shadow": "0px 0px 20px -10px rgba(0, 0, 0, 0.75)",
     boxShadow: "0px 0px 15px -10px rgba(0, 0, 0, 0.75)",
   },
   title: {
     color: theme.palette.primary.main,
   },
-   status: {
+  status: {
     backgroundColor: "#e5faf2",
-    color: "#3bb077"
+    color: "#3bb077",
   },
-  items: {
-    display: "flex",
-    alignItems: "center",
-  }
 }));
 
-const rows = [
-  createData(
-    0,
-    "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fG1hbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
-    "Elvis Presley",
-    "16 Mar, 2019",
-    "1 week",
-    "Approved"
-  ),
-  createData(
-    1,
-    "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fG1hbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
-    "Elvis Presley",
-    "16 Mar, 2019",
-    "1 week",
-    "Approved"
-  ),
-  createData(
-    2,
-    "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fG1hbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
-    "Elvis Presley",
-    "16 Mar, 2019",
-    "1 week",
-    "Approved"
-  ),
-  createData(
-    3,
-    "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fG1hbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
-    "Elvis Presley",
-    "16 Mar, 2019",
-    "1 week",
-    "Approved"
-  ),
-  createData(
-    4,
-    "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fG1hbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60",
-    "Elvis Presley",
-    "16 Mar, 2019",
-    "1 week",
-    "Approved"
-  )
-];
-
-function createData(id, img, name, date, duration, status) {
-  return { id, img, name, date, duration, status };
-}
-
 export default function WidgetLg() {
-  const classes = useStyles({rows});
+  const classes = useStyles();
 
   return (
     <Card className={classes.container}>
       <CardContent>
-        <Typography variant="h6" className={classes.title}>
-          Latest Vacations
+        <Typography variant="h5" className={classes.title}>
+          Employee Recruitment Information
         </Typography>
-        <Table size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell>Customer</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Duration</TableCell>
-              <TableCell>Status</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell className={classes.items}>
-                   <Avatar style={{marginRight: 15}} alt="" src={row.img} />
-                  {row.name}
-                  </TableCell>
-                <TableCell>{row.date}</TableCell>
-                <TableCell>{row.duration}</TableCell>
-                <TableCell>
-                  <Button variant="outlined" className={classes.status}>{row.status}</Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+      </CardContent>
+      <CardContent>
+      <BarChart
+        width={440}
+        height={300}
+        data={data}
+        margin={{
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+        }}
+      >
+        <XAxis dataKey="name" />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="vacancies" fill="#52c7b8" />
+        <Bar dataKey="candidates" fill="#00675b" />
+      </BarChart>
       </CardContent>
     </Card>
   );
