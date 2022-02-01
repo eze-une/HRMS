@@ -21,17 +21,19 @@ function App() {
       {/* <SignIn /> */}
      {/* <SignUp /> */}
 
-      <Navbar />
-      <Grid container>
+      {/* <Navbar /> */}
+      {/* <Grid container>
         <Grid item sm={2}>
           <Sidebar />
         </Grid>
         <Grid item className={classes.feed} sm={10}>
-          <Home />
+          <Home /> */}
            {/* <EmployeeHome /> */}
       {/* <EmployeeTrainingPage /> */}
-        </Grid>
-    </Grid>
+        {/* </Grid>
+    </Grid> */}
+    <Sidebar />
+
     </div>
   );
 }
