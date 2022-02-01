@@ -7,6 +7,7 @@ import EmployeeHome from "./components/Employee Dashboard/EmployeeHome";
 import { Grid, makeStyles } from "@material-ui/core";
 import Navbar from "./components/pages/navbar";
 import Sidebar from "./components/pages/sidebar";
+import SideBar from "./components/sidebar";
 
 const useStyles = makeStyles((theme) => ({
   feed: {
@@ -32,7 +33,7 @@ function App() {
       {/* <EmployeeTrainingPage /> */}
         {/* </Grid>
     </Grid> */}
-    <Sidebar />
+    <SideBar />
 
     </div>
   );
